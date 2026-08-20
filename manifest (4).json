@@ -1,0 +1,11 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Loyal Event &amp; Caters",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Loyal Caters",
+  "start_url": "/",
+  "theme_color": "#ffffff"
+}
