@@ -4,9 +4,9 @@
   "display": "standalone",
   "name": "Loyal Event & Caterers",
   "orientation": "any",
-  "scope": "/",
+  "scope": "/loyal-event-caterers/",
   "short_name": "Loyal Caters",
-  "start_url": "/",
+  "start_url": "/loyal-event-caterers/",
   "theme_color": "#ffffff",
   "icons": [
     {
