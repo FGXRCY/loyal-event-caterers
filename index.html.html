@@ -1,0 +1,3931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LOYAL Event & Caterers</title>
+
+<style>
+
+/* =====================================================
+   LOYAL EVENT & CATERERS
+   PREMIUM INVOICE MANAGEMENT SYSTEM
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+:root{
+    --black:#111111;
+    --dark:#191919;
+    --gold:#c99a3b;
+    --gold-light:#f4e4bd;
+    --cream:#faf8f2;
+    --white:#ffffff;
+    --text:#292929;
+    --muted:#777;
+    --border:#e6e0d4;
+    --success:#287a4d;
+    --danger:#b83232;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f2ed;
+    color:var(--text);
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:250px;
+    background:var(--black);
+    color:white;
+    padding:20px 15px;
+    z-index:20;
+    overflow-y:auto;
+}
+
+.logo{
+    text-align:center;
+    padding:8px 8px 25px;
+    border-bottom:1px solid #333;
+    margin-bottom:20px;
+}
+
+.logo img{
+    width:115px;
+    height:115px;
+    object-fit:contain;
+    border-radius:15px;
+    background:white;
+    padding:5px;
+}
+
+.logo-title{
+    margin-top:12px;
+    font-size:17px;
+    font-weight:bold;
+    letter-spacing:1.5px;
+    color:var(--gold);
+}
+
+.logo-sub{
+    font-size:9px;
+    color:#aaa;
+    letter-spacing:2px;
+    margin-top:5px;
+}
+
+/* NAV */
+
+.nav button{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#bbb;
+    text-align:left;
+    padding:14px 15px;
+    margin-bottom:5px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.nav button:hover{
+    background:#252525;
+    color:white;
+}
+
+.nav button.active{
+    background:var(--gold);
+    color:#111;
+}
+
+/* SIDEBAR BOTTOM */
+
+.sidebar-footer{
+    position:absolute;
+    bottom:20px;
+    left:15px;
+    right:15px;
+    text-align:center;
+    font-size:10px;
+    color:#777;
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:72px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.topbar h1{
+    margin:0;
+    font-size:21px;
+    color:#222;
+}
+
+.topbar-right{
+    display:flex;
+    gap:8px;
+}
+
+.container{
+    max-width:1250px;
+    margin:auto;
+    padding:28px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button{
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.btn{
+    padding:10px 15px;
+    border-radius:8px;
+    border:1px solid #d8d1c3;
+    background:white;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.primary{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:#111;
+}
+
+.dark-btn{
+    background:#151515;
+    color:white;
+    border-color:#151515;
+}
+
+.danger{
+    color:var(--danger);
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.hero h2{
+    margin:0 0 6px;
+    font-size:29px;
+    color:#151515;
+}
+
+.hero p{
+    margin:0;
+    color:var(--muted);
+}
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.welcome-banner{
+    background:
+        linear-gradient(
+            110deg,
+            #111 0%,
+            #202020 60%,
+            #30240f 100%
+        );
+    color:white;
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:22px;
+    position:relative;
+    overflow:hidden;
+}
+
+.welcome-banner:after{
+    content:"LOYAL";
+    position:absolute;
+    right:30px;
+    bottom:-25px;
+    font-size:100px;
+    font-weight:bold;
+    color:#ffffff08;
+    letter-spacing:8px;
+}
+
+.welcome-banner h2{
+    color:white;
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.welcome-banner p{
+    color:#bbb;
+    margin:0;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-bottom:22px;
+}
+
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:20px;
+    position:relative;
+}
+
+.stat-icon{
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    background:var(--gold-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    margin-bottom:14px;
+}
+
+.stat-title{
+    font-size:11px;
+    color:#888;
+    font-weight:bold;
+    letter-spacing:.5px;
+}
+
+.stat-value{
+    font-size:25px;
+    font-weight:bold;
+    margin-top:8px;
+    color:#181818;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:1.5fr .5fr;
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    margin-top:0;
+    color:#222;
+}
+
+.quick{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.quick button{
+    padding:18px 10px;
+    background:#faf9f5;
+    border:1px solid var(--border);
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.quick button:hover{
+    background:var(--gold-light);
+}
+
+/* =====================================================
+   FORMS
+===================================================== */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field label{
+    display:block;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:6px;
+    color:#555;
+    text-transform:uppercase;
+    letter-spacing:.3px;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+    padding:11px;
+    border:1px solid #d9d2c5;
+    border-radius:8px;
+    outline:none;
+    background:white;
+}
+
+.field textarea{
+    min-height:85px;
+    resize:vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 2px #c99a3b20;
+}
+
+/* =====================================================
+   LOGO UPLOAD
+===================================================== */
+
+.logo-upload{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    border:1px dashed #cfc5b3;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:18px;
+    background:#fcfaf5;
+}
+
+.logo-preview{
+    width:75px;
+    height:75px;
+    object-fit:contain;
+    background:white;
+    border-radius:10px;
+    padding:5px;
+    border:1px solid var(--border);
+}
+
+/* =====================================================
+   ITEMS
+===================================================== */
+
+.items{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.items th,
+.items td{
+    padding:9px;
+    border-bottom:1px solid #eee9df;
+}
+
+.items th{
+    text-align:left;
+    font-size:11px;
+    color:#777;
+    text-transform:uppercase;
+}
+
+.items input{
+    width:100%;
+    padding:8px;
+    border:1px solid #d8d1c3;
+    border-radius:7px;
+}
+
+.right{
+    text-align:right;
+}
+
+.total-box{
+    width:330px;
+    margin-left:auto;
+    margin-top:18px;
+}
+
+.total-line{
+    display:flex;
+    justify-content:space-between;
+    padding:7px;
+    color:#666;
+}
+
+.grand-total{
+    border-top:2px solid var(--gold);
+    color:#111;
+    font-size:20px;
+    font-weight:bold;
+    padding-top:12px;
+}
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+.preview-area{
+    background:#dedbd3;
+    padding:30px;
+    overflow:auto;
+    border-radius:12px;
+}
+
+.invoice-paper{
+    background:white;
+    width:794px;
+    min-height:1123px;
+    margin:auto;
+    padding:45px;
+    box-shadow:0 5px 30px #0003;
+}
+
+/* =====================================================
+   INVOICE PAPER
+===================================================== */
+
+.invoice-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding-bottom:22px;
+    border-bottom:3px solid var(--gold);
+}
+
+.invoice-brand{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+}
+
+.invoice-logo{
+    width:72px;
+    height:72px;
+    object-fit:contain;
+}
+
+.business-name{
+    color:#111;
+    font-size:22px;
+    font-weight:bold;
+    margin-top:3px;
+    letter-spacing:.5px;
+}
+
+.business-tag{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:2px;
+    margin-top:4px;
+}
+
+.business-small{
+    color:#777;
+    font-size:10px;
+    line-height:1.6;
+    margin-top:8px;
+}
+
+.invoice-title{
+    text-align:right;
+}
+
+.invoice-title h1{
+    margin:0;
+    font-size:32px;
+    letter-spacing:1px;
+    color:#111;
+}
+
+.invoice-number{
+    color:#777;
+    margin-top:7px;
+    font-size:11px;
+}
+
+.bill-section{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    padding:27px 0;
+}
+
+.bill-section h5{
+    color:var(--gold);
+    margin:0 0 8px;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.bill-section p{
+    font-size:11px;
+    line-height:1.7;
+    margin:0;
+}
+
+.preview-items{
+    width:100%;
+    border-collapse:collapse;
+    font-size:11px;
+}
+
+.preview-items th{
+    background:#171717;
+    color:white;
+    padding:11px;
+    text-align:left;
+}
+
+.preview-items td{
+    padding:11px;
+    border-bottom:1px solid #e8e4db;
+}
+
+.preview-bottom{
+    display:grid;
+    grid-template-columns:1fr 260px;
+    gap:30px;
+    margin-top:28px;
+}
+
+.preview-total div{
+    display:flex;
+    justify-content:space-between;
+    padding:7px;
+    font-size:11px;
+}
+
+.preview-total .final{
+    border-top:2px solid var(--gold);
+    color:#111;
+    font-size:18px;
+    font-weight:bold;
+    padding-top:11px;
+}
+
+.invoice-footer{
+    text-align:center;
+    margin-top:65px;
+    padding-top:18px;
+    border-top:1px solid #eee8dc;
+    color:#888;
+    font-size:10px;
+}
+
+.invoice-footer strong{
+    color:var(--gold);
+}
+
+/* =====================================================
+   TABLES
+===================================================== */
+
+.data-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.data-table th,
+.data-table td{
+    padding:12px 8px;
+    border-bottom:1px solid #e8e4db;
+    text-align:left;
+}
+
+.data-table th{
+    color:#777;
+    font-size:10px;
+    text-transform:uppercase;
+}
+
+.badge{
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:bold;
+}
+
+.paid{
+    background:#e5f7ed;
+    color:#287a4d;
+}
+
+.unpaid{
+    background:#fff0ee;
+    color:#b83232;
+}
+
+.partial{
+    background:#fff4d4;
+    color:#946d00;
+}
+
+/* =====================================================
+   CUSTOMERS
+===================================================== */
+
+.customer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.customer{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:17px;
+}
+
+.customer:hover{
+    border-color:var(--gold);
+}
+
+.customer strong{
+    font-size:16px;
+}
+
+.customer p{
+    color:#777;
+    font-size:11px;
+    line-height:1.7;
+}
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+    text-align:center;
+    padding:40px 20px;
+    color:#999;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+    .sidebar{
+        width:210px;
+    }
+
+    .main{
+        margin-left:210px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .customer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .sidebar-footer{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .topbar{
+        height:auto;
+        padding:15px;
+        gap:10px;
+        flex-wrap:wrap;
+    }
+
+    .topbar-right{
+        width:100%;
+    }
+
+    .topbar-right button{
+        flex:1;
+    }
+
+    .container{
+        padding:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .customer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .total-box{
+        width:100%;
+    }
+
+    .invoice-paper{
+        transform-origin:top left;
+    }
+
+}
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    .sidebar,
+    .topbar,
+    .no-print{
+        display:none!important;
+    }
+
+    .main{
+        margin:0;
+    }
+
+    .container{
+        padding:0;
+    }
+
+    .page:not(#invoicePage){
+        display:none!important;
+    }
+
+    #invoicePage{
+        display:block!important;
+    }
+
+    .card:not(.preview-card){
+        display:none!important;
+    }
+
+    .preview-area{
+        background:white;
+        padding:0;
+    }
+
+    .invoice-paper{
+        width:100%;
+        min-height:auto;
+        box-shadow:none;
+        padding:25px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <img src="loyallogo.png"
+             alt="LOYAL Event & Caterers">
+
+        <div class="logo-title">
+            LOYAL
+        </div>
+
+        <div class="logo-sub">
+            EVENT & CATERERS
+        </div>
+
+    </div>
+
+    <div class="nav">
+
+        <button class="active"
+                onclick="showPage('dashboard',this)">
+            🏠 &nbsp; Dashboard
+        </button>
+
+        <button onclick="newInvoice()">
+            🧾 &nbsp; New Invoice
+        </button>
+
+        <button onclick="showPage('history',this)">
+            📄 &nbsp; Invoice History
+        </button>
+
+        <button onclick="showPage('customers',this)">
+            👥 &nbsp; Customers
+        </button>
+
+        <button onclick="showPage('business',this)">
+            ⚙️ &nbsp; Business Settings
+        </button>
+
+    </div>
+
+    <div class="sidebar-footer">
+        LOYAL EVENT & CATERERS<br>
+        Professional Billing System
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="main">
+
+    <div class="topbar">
+
+        <h1 id="pageTitle">
+            Dashboard
+        </h1>
+
+        <div class="topbar-right">
+
+            <button class="btn"
+                    onclick="newInvoice()">
+                ＋ New Invoice
+            </button>
+
+            <button class="btn primary"
+                    onclick="printInvoice()">
+                🖨 Print / PDF
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section id="dashboardPage"
+         class="page active">
+
+    <div class="welcome-banner">
+
+        <h2>
+            Welcome to LOYAL 👋
+        </h2>
+
+        <p>
+            Manage your event, catering and billing operations professionally.
+        </p>
+
+    </div>
+
+
+    <div class="hero">
+
+        <div>
+            <h2>Dashboard</h2>
+            <p>Overview of your invoices and customers.</p>
+        </div>
+
+        <button class="btn primary"
+                onclick="newInvoice()">
+            ＋ Create Invoice
+        </button>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🧾
+            </div>
+
+            <div class="stat-title">
+                TOTAL INVOICES
+            </div>
+
+            <div class="stat-value"
+                 id="totalInvoices">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                💰
+            </div>
+
+            <div class="stat-title">
+                TOTAL SALES
+            </div>
+
+            <div class="stat-value"
+                 id="totalSales">
+                ₹ 0.00
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+            <div class="stat-title">
+                PAID
+            </div>
+
+            <div class="stat-value"
+                 id="paidSales">
+                ₹ 0.00
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div class="stat-title">
+                CUSTOMERS
+            </div>
+
+            <div class="stat-value"
+                 id="totalCustomers">
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="card">
+
+            <h3>
+                Recent Invoices
+            </h3>
+
+            <div id="recentInvoices"></div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Quick Actions
+            </h3>
+
+            <div class="quick">
+
+                <button onclick="newInvoice()">
+                    🧾<br><br>
+                    New Invoice
+                </button>
+
+                <button onclick="addCustomer()">
+                    👤<br><br>
+                    Add Customer
+                </button>
+
+                <button onclick="showPage('business')">
+                    ⚙️<br><br>
+                    Business
+                </button>
+
+                <button onclick="backupData()">
+                    💾<br><br>
+                    Backup
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INVOICE
+===================================================== -->
+
+<section id="invoicePage"
+         class="page">
+
+    <div class="hero no-print">
+
+        <div>
+
+            <h2 id="invoiceHeading">
+                Create Invoice
+            </h2>
+
+            <p>
+                Create professional bills for your customers.
+            </p>
+
+        </div>
+
+        <div>
+
+            <button class="btn"
+                    onclick="saveInvoice()">
+                💾 Save Invoice
+            </button>
+
+            <button class="btn primary"
+                    onclick="shareWhatsApp()">
+                WhatsApp
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUSINESS -->
+
+    <div class="card no-print">
+
+        <h3>
+            🏢 Your Business
+        </h3>
+
+        <div class="logo-upload">
+
+            <img id="logoPreview"
+                 class="logo-preview"
+                 src="loyallogo.png">
+
+            <div>
+
+                <strong>
+                    LOYAL Event & Caterers
+                </strong>
+
+                <p style="font-size:11px;color:#777">
+                    Your logo will appear on the invoice.
+                </p>
+
+                <button class="btn"
+                        onclick="document.getElementById('logoFile').click()">
+                    Change Logo
+                </button>
+
+                <input id="logoFile"
+                       type="file"
+                       accept="image/*"
+                       style="display:none">
+
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Business Name
+                </label>
+
+                <input id="businessName">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Phone
+                </label>
+
+                <input id="businessPhone">
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Business Address
+            </label>
+
+            <textarea id="businessAddress"></textarea>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Email
+                </label>
+
+                <input id="businessEmail">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    GSTIN
+                </label>
+
+                <input id="businessGST">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DETAILS -->
+
+    <div class="card no-print">
+
+        <h3>
+            📋 Invoice Details
+        </h3>
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Document Type
+                </label>
+
+                <select id="invoiceType">
+
+                    <option>INVOICE</option>
+                    <option>RECEIPT</option>
+                    <option>ESTIMATE</option>
+                    <option>QUOTATION</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Invoice Number
+                </label>
+
+                <input id="invoiceNumber">
+
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Issue Date
+                </label>
+
+                <input type="date"
+                       id="issueDate">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Due Date
+                </label>
+
+                <input type="date"
+                       id="dueDate">
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Existing Customer
+            </label>
+
+            <select id="customerSelect"
+                    onchange="selectCustomer()">
+
+            </select>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Customer Name
+                </label>
+
+                <input id="customerName">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Phone / WhatsApp
+                </label>
+
+                <input id="customerPhone">
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Customer Address
+            </label>
+
+            <textarea id="customerAddress"></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- ITEMS -->
+
+    <div class="card no-print">
+
+        <h3>
+            🍽️ Event / Catering Services
+        </h3>
+
+        <table class="items">
+
+            <thead>
+
+                <tr>
+
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th class="right">Amount</th>
+                    <th></th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="itemsBody"></tbody>
+
+        </table>
+
+
+        <br>
+
+        <button class="btn primary"
+                onclick="addItem()">
+            ＋ Add Service
+        </button>
+
+
+        <div class="form-grid"
+             style="max-width:500px;margin-left:auto;margin-top:20px">
+
+            <div class="field">
+
+                <label>
+                    Discount %
+                </label>
+
+                <input type="number"
+                       id="discount"
+                       value="0"
+                       min="0"
+                       oninput="updatePreview()">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Tax %
+                </label>
+
+                <input type="number"
+                       id="tax"
+                       value="0"
+                       min="0"
+                       oninput="updatePreview()">
+
+            </div>
+
+        </div>
+
+
+        <div class="total-box">
+
+            <div class="total-line">
+                <span>Subtotal</span>
+                <span id="subtotal">₹ 0.00</span>
+            </div>
+
+            <div class="total-line">
+                <span>Discount</span>
+                <span id="discountAmount">₹ 0.00</span>
+            </div>
+
+            <div class="total-line">
+                <span>Tax</span>
+                <span id="taxAmount">₹ 0.00</span>
+            </div>
+
+            <div class="total-line grand-total">
+                <span>Total</span>
+                <span id="grandTotal">₹ 0.00</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+
+    <div class="card no-print">
+
+        <h3>
+            💳 Payment
+        </h3>
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Payment Method
+                </label>
+
+                <select id="paymentMethod">
+
+                    <option>Cash</option>
+                    <option>UPI</option>
+                    <option>Bank Transfer</option>
+                    <option>Card</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Payment Status
+                </label>
+
+                <select id="paymentStatus">
+
+                    <option>PAID</option>
+                    <option>UNPAID</option>
+                    <option>PARTIALLY PAID</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Notes
+            </label>
+
+            <textarea id="notes">Thank you for choosing LOYAL Event & Caterers!</textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- PREVIEW -->
+
+    <div class="card preview-card">
+
+        <div class="no-print">
+
+            <h3>
+                Invoice Preview
+            </h3>
+
+            <br>
+
+        </div>
+
+        <div class="preview-area">
+
+            <div id="invoicePaper"
+                 class="invoice-paper">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HISTORY
+===================================================== -->
+
+<section id="historyPage"
+         class="page">
+
+    <div class="hero">
+
+        <div>
+
+            <h2>
+                Invoice History
+            </h2>
+
+            <p>
+                View and manage all your saved invoices.
+            </p>
+
+        </div>
+
+        <input id="searchInvoice"
+               placeholder="Search invoice or customer..."
+               oninput="renderHistory()"
+               style="padding:11px;border:1px solid #d8d1c3;border-radius:8px">
+
+    </div>
+
+
+    <div class="card">
+
+        <div id="historyList"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CUSTOMERS
+===================================================== -->
+
+<section id="customersPage"
+         class="page">
+
+    <div class="hero">
+
+        <div>
+
+            <h2>
+                Customers
+            </h2>
+
+            <p>
+                Manage your event and catering customers.
+            </p>
+
+        </div>
+
+        <button class="btn primary"
+                onclick="addCustomer()">
+            ＋ Add Customer
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div id="customersList"
+             class="customer-grid">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BUSINESS SETTINGS
+===================================================== -->
+
+<section id="businessPage"
+         class="page">
+
+    <div class="hero">
+
+        <div>
+
+            <h2>
+                Business Settings
+            </h2>
+
+            <p>
+                Set your default LOYAL business information.
+            </p>
+
+        </div>
+
+        <button class="btn primary"
+                onclick="saveBusinessSettings()">
+            Save Settings
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="field">
+
+            <label>
+                Business Name
+            </label>
+
+            <input id="settingsName">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Address
+            </label>
+
+            <textarea id="settingsAddress"></textarea>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Phone
+                </label>
+
+                <input id="settingsPhone">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Email
+                </label>
+
+                <input id="settingsEmail">
+
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    GSTIN
+                </label>
+
+                <input id="settingsGST">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Invoice Prefix
+                </label>
+
+                <input id="settingsPrefix"
+                       value="LOYAL">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DATABASE
+===================================================== */
+
+let database =
+JSON.parse(
+    localStorage.getItem("loyalInvoiceDatabase")
+) || {
+
+    invoices:[],
+
+    customers:[],
+
+    nextNumber:1,
+
+    business:{
+        name:"LOYAL Event & Caterers",
+        address:"",
+        phone:"",
+        email:"",
+        gst:"",
+        prefix:"LOYAL",
+        logo:"loyallogo.png"
+    }
+
+};
+
+
+let editingInvoiceId=null;
+
+
+/* =====================================================
+   DATABASE SAVE
+===================================================== */
+
+function saveDatabase(){
+
+    localStorage.setItem(
+        "loyalInvoiceDatabase",
+        JSON.stringify(database)
+    );
+
+}
+
+
+/* =====================================================
+   MONEY
+===================================================== */
+
+function money(value){
+
+    return "₹ " +
+        Number(value || 0).toLocaleString(
+            "en-IN",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(page,button){
+
+    document.querySelectorAll(".page")
+        .forEach(
+            p=>p.classList.remove("active")
+        );
+
+
+    document.getElementById(page+"Page")
+        .classList.add("active");
+
+
+    document.querySelectorAll(".nav button")
+        .forEach(
+            b=>b.classList.remove("active")
+        );
+
+
+    if(button){
+        button.classList.add("active");
+    }
+
+
+    const titles={
+
+        dashboard:"Dashboard",
+
+        invoice:"New Invoice",
+
+        history:"Invoice History",
+
+        customers:"Customers",
+
+        business:"Business Settings"
+
+    };
+
+
+    document.getElementById("pageTitle")
+        .textContent=titles[page];
+
+
+    if(page==="dashboard")
+        renderDashboard();
+
+
+    if(page==="history")
+        renderHistory();
+
+
+    if(page==="customers")
+        renderCustomers();
+
+
+    if(page==="business")
+        loadBusinessSettings();
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function today(){
+
+    return new Date()
+        .toISOString()
+        .split("T")[0];
+
+}
+
+
+function dueDate(){
+
+    let d=new Date();
+
+    d.setDate(d.getDate()+7);
+
+    return d.toISOString()
+        .split("T")[0];
+
+}
+
+
+/* =====================================================
+   NEW INVOICE
+===================================================== */
+
+function newInvoice(){
+
+    editingInvoiceId=null;
+
+
+    showPage("invoice");
+
+
+    document.getElementById("invoiceHeading")
+        .textContent="Create Invoice";
+
+
+    document.getElementById("invoiceType")
+        .value="INVOICE";
+
+
+    document.getElementById("invoiceNumber")
+        .value=
+        database.business.prefix+
+        "-" +
+        String(database.nextNumber)
+        .padStart(4,"0");
+
+
+    document.getElementById("issueDate")
+        .value=today();
+
+
+    document.getElementById("dueDate")
+        .value=dueDate();
+
+
+    document.getElementById("customerName")
+        .value="";
+
+
+    document.getElementById("customerPhone")
+        .value="";
+
+
+    document.getElementById("customerAddress")
+        .value="";
+
+
+    document.getElementById("discount")
+        .value=0;
+
+
+    document.getElementById("tax")
+        .value=0;
+
+
+    document.getElementById("itemsBody")
+        .innerHTML="";
+
+
+    addItem(
+        "Event / Catering Service",
+        1,
+        0
+    );
+
+
+    loadBusinessIntoInvoice();
+
+
+    renderCustomerSelect();
+
+
+    updatePreview();
+
+}
+
+
+/* =====================================================
+   BUSINESS
+===================================================== */
+
+function loadBusinessIntoInvoice(){
+
+    let b=database.business;
+
+
+    document.getElementById("businessName")
+        .value=b.name;
+
+
+    document.getElementById("businessAddress")
+        .value=b.address;
+
+
+    document.getElementById("businessPhone")
+        .value=b.phone;
+
+
+    document.getElementById("businessEmail")
+        .value=b.email;
+
+
+    document.getElementById("businessGST")
+        .value=b.gst;
+
+
+    document.getElementById("logoPreview")
+        .src=b.logo || "loyallogo.png";
+
+}
+
+
+/* =====================================================
+   ADD ITEM
+===================================================== */
+
+function addItem(
+    description="",
+    qty=1,
+    rate=0
+){
+
+    let row=document.createElement("tr");
+
+
+    row.innerHTML=`
+
+        <td>
+            <input class="item-description"
+                   value="${escapeHTML(description)}">
+        </td>
+
+        <td>
+            <input class="item-qty"
+                   type="number"
+                   value="${qty}"
+                   min="0">
+        </td>
+
+        <td>
+            <input class="item-rate"
+                   type="number"
+                   value="${rate}"
+                   min="0">
+        </td>
+
+        <td class="right item-amount">
+            ₹ 0.00
+        </td>
+
+        <td>
+            <button class="danger btn"
+                    onclick="this.closest('tr').remove();updatePreview()">
+                ×
+            </button>
+        </td>
+
+    `;
+
+
+    document.getElementById("itemsBody")
+        .appendChild(row);
+
+
+    row.querySelectorAll("input")
+        .forEach(
+            input=>{
+                input.addEventListener(
+                    "input",
+                    updatePreview
+                );
+            }
+        );
+
+
+    updatePreview();
+
+}
+
+
+/* =====================================================
+   GET ITEMS
+===================================================== */
+
+function getItems(){
+
+    let rows=
+        document.querySelectorAll(
+            "#itemsBody tr"
+        );
+
+
+    let items=[];
+
+
+    rows.forEach(row=>{
+
+        let description=
+            row.querySelector(
+                ".item-description"
+            ).value;
+
+
+        let qty=
+            Number(
+                row.querySelector(
+                    ".item-qty"
+                ).value
+            ) || 0;
+
+
+        let rate=
+            Number(
+                row.querySelector(
+                    ".item-rate"
+                ).value
+            ) || 0;
+
+
+        if(description){
+
+            items.push({
+
+                description:description,
+
+                qty:qty,
+
+                rate:rate
+
+            });
+
+        }
+
+    });
+
+
+    return items;
+
+}
+
+
+/* =====================================================
+   CALCULATE
+===================================================== */
+
+function calculate(){
+
+    let items=getItems();
+
+
+    let subtotal=0;
+
+
+    items.forEach(item=>{
+
+        subtotal +=
+            item.qty *
+            item.rate;
+
+    });
+
+
+    let discountPercent=
+        Number(
+            document.getElementById(
+                "discount"
+            ).value
+        ) || 0;
+
+
+    let taxPercent=
+        Number(
+            document.getElementById(
+                "tax"
+            ).value
+        ) || 0;
+
+
+    let discount=
+        subtotal *
+        discountPercent /
+        100;
+
+
+    let taxable=
+        subtotal-discount;
+
+
+    let tax=
+        taxable *
+        taxPercent /
+        100;
+
+
+    let total=
+        taxable+tax;
+
+
+    return{
+
+        subtotal,
+
+        discount,
+
+        tax,
+
+        total,
+
+        items
+
+    };
+
+}
+
+
+/* =====================================================
+   UPDATE PREVIEW
+===================================================== */
+
+function updatePreview(){
+
+    let data=calculate();
+
+
+    document.getElementById("subtotal")
+        .textContent=money(data.subtotal);
+
+
+    document.getElementById("discountAmount")
+        .textContent="- "+money(data.discount);
+
+
+    document.getElementById("taxAmount")
+        .textContent=money(data.tax);
+
+
+    document.getElementById("grandTotal")
+        .textContent=money(data.total);
+
+
+    document.querySelectorAll(
+        "#itemsBody tr"
+    ).forEach(row=>{
+
+        let qty=
+            Number(
+                row.querySelector(
+                    ".item-qty"
+                ).value
+            ) || 0;
+
+
+        let rate=
+            Number(
+                row.querySelector(
+                    ".item-rate"
+                ).value
+            ) || 0;
+
+
+        row.querySelector(
+            ".item-amount"
+        ).textContent=
+            money(qty*rate);
+
+    });
+
+
+    renderInvoicePreview();
+
+}
+
+
+/* =====================================================
+   INVOICE PREVIEW
+===================================================== */
+
+function renderInvoicePreview(){
+
+    let data=calculate();
+
+
+    let rows="";
+
+
+    data.items.forEach(item=>{
+
+        rows+=`
+
+        <tr>
+
+            <td>
+                ${escapeHTML(item.description)}
+            </td>
+
+            <td>
+                ${item.qty}
+            </td>
+
+            <td class="right">
+                ${money(item.rate)}
+            </td>
+
+            <td class="right">
+                ${money(item.qty*item.rate)}
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    let bName=
+        document.getElementById(
+            "businessName"
+        ).value ||
+        "LOYAL Event & Caterers";
+
+
+    let bAddress=
+        document.getElementById(
+            "businessAddress"
+        ).value;
+
+
+    let bPhone=
+        document.getElementById(
+            "businessPhone"
+        ).value;
+
+
+    let bEmail=
+        document.getElementById(
+            "businessEmail"
+        ).value;
+
+
+    let gst=
+        document.getElementById(
+            "businessGST"
+        ).value;
+
+
+    let customer=
+        document.getElementById(
+            "customerName"
+        ).value ||
+        "Customer";
+
+
+    let customerAddress=
+        document.getElementById(
+            "customerAddress"
+        ).value;
+
+
+    let customerPhone=
+        document.getElementById(
+            "customerPhone"
+        ).value;
+
+
+    let invoiceType=
+        document.getElementById(
+            "invoiceType"
+        ).value;
+
+
+    let invoiceNo=
+        document.getElementById(
+            "invoiceNumber"
+        ).value;
+
+
+    let issue=
+        document.getElementById(
+            "issueDate"
+        ).value;
+
+
+    let due=
+        document.getElementById(
+            "dueDate"
+        ).value;
+
+
+    let status=
+        document.getElementById(
+            "paymentStatus"
+        ).value;
+
+
+    let payment=
+        document.getElementById(
+            "paymentMethod"
+        ).value;
+
+
+    let notes=
+        document.getElementById(
+            "notes"
+        ).value;
+
+
+    let logo=
+        database.business.logo ||
+        "loyallogo.png";
+
+
+    document.getElementById(
+        "invoicePaper"
+    ).innerHTML=`
+
+        <div class="invoice-top">
+
+            <div class="invoice-brand">
+
+                <img class="invoice-logo"
+                     src="${logo}"
+                     onerror="this.src='loyallogo.png'">
+
+                <div>
+
+                    <div class="business-name">
+                        ${escapeHTML(bName)}
+                    </div>
+
+                    <div class="business-tag">
+                        EVENT & CATERERS
+                    </div>
+
+                    <div class="business-small">
+
+                        ${escapeHTML(bAddress)}
+
+                        <br>
+
+                        ${escapeHTML(bPhone)}
+
+                        ${
+                            bEmail
+                            ?
+                            " • "+escapeHTML(bEmail)
+                            :
+                            ""
+                        }
+
+                        <br>
+
+                        ${
+                            gst
+                            ?
+                            "GSTIN: "+escapeHTML(gst)
+                            :
+                            ""
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="invoice-title">
+
+                <h1>
+                    ${escapeHTML(invoiceType)}
+                </h1>
+
+                <div class="invoice-number">
+                    # ${escapeHTML(invoiceNo)}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="bill-section">
+
+            <div>
+
+                <h5>
+                    BILL TO
+                </h5>
+
+                <p>
+
+                    <strong>
+                        ${escapeHTML(customer)}
+                    </strong>
+
+                    <br>
+
+                    ${escapeHTML(customerAddress)}
+
+                    <br>
+
+                    ${escapeHTML(customerPhone)}
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h5>
+                    DOCUMENT DETAILS
+                </h5>
+
+                <p>
+
+                    Issue Date:
+                    <strong>
+                        ${escapeHTML(issue)}
+                    </strong>
+
+                    <br>
+
+                    Due Date:
+                    <strong>
+                        ${escapeHTML(due)}
+                    </strong>
+
+                    <br>
+
+                    Status:
+                    <strong>
+                        ${escapeHTML(status)}
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <table class="preview-items">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Description
+                    </th>
+
+                    <th>
+                        Qty
+                    </th>
+
+                    <th class="right">
+                        Rate
+                    </th>
+
+                    <th class="right">
+                        Amount
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${rows}
+
+            </tbody>
+
+        </table>
+
+
+        <div class="preview-bottom">
+
+            <div>
+
+                <div style="
+                    font-size:11px;
+                    color:#777;
+                    line-height:1.7">
+
+                    <strong>
+                        Payment Method:
+                    </strong>
+
+                    ${escapeHTML(payment)}
+
+                    <br><br>
+
+                    ${escapeHTML(notes)}
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-total">
+
+                <div>
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span>
+                        ${money(data.subtotal)}
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Discount
+                    </span>
+
+                    <span>
+                        - ${money(data.discount)}
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Tax
+                    </span>
+
+                    <span>
+                        ${money(data.tax)}
+                    </span>
+
+                </div>
+
+
+                <div class="final">
+
+                    <span>
+                        TOTAL
+                    </span>
+
+                    <span>
+                        ${money(data.total)}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="invoice-footer">
+
+            <strong>
+                LOYAL EVENT & CATERERS
+            </strong>
+
+            <br>
+
+            Thank you for choosing us for your special occasion.
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   SAVE INVOICE
+===================================================== */
+
+function saveInvoice(){
+
+    let data=calculate();
+
+
+    let customerName=
+        document.getElementById(
+            "customerName"
+        ).value.trim();
+
+
+    if(!customerName){
+
+        alert(
+            "Please enter customer name."
+        );
+
+        return;
+
+    }
+
+
+    if(data.items.length===0){
+
+        alert(
+            "Please add at least one service."
+        );
+
+        return;
+
+    }
+
+
+    let invoice={
+
+        id:
+            editingInvoiceId ||
+            Date.now().toString(),
+
+
+        number:
+            document.getElementById(
+                "invoiceNumber"
+            ).value,
+
+
+        type:
+            document.getElementById(
+                "invoiceType"
+            ).value,
+
+
+        issue:
+            document.getElementById(
+                "issueDate"
+            ).value,
+
+
+        due:
+            document.getElementById(
+                "dueDate"
+            ).value,
+
+
+        customer:{
+
+            name:customerName,
+
+            phone:
+                document.getElementById(
+                    "customerPhone"
+                ).value,
+
+            address:
+                document.getElementById(
+                    "customerAddress"
+                ).value
+
+        },
+
+
+        items:data.items,
+
+
+        discount:
+            Number(
+                document.getElementById(
+                    "discount"
+                ).value
+            ) || 0,
+
+
+        tax:
+            Number(
+                document.getElementById(
+                    "tax"
+                ).value
+            ) || 0,
+
+
+        total:data.total,
+
+
+        status:
+            document.getElementById(
+                "paymentStatus"
+            ).value,
+
+
+        payment:
+            document.getElementById(
+                "paymentMethod"
+            ).value,
+
+
+        notes:
+            document.getElementById(
+                "notes"
+            ).value,
+
+
+        created:
+            new Date().toISOString()
+
+    };
+
+
+    if(editingInvoiceId){
+
+        let index=
+            database.invoices.findIndex(
+                i=>
+                    i.id===editingInvoiceId
+            );
+
+
+        if(index!==-1){
+
+            database.invoices[index]=invoice;
+
+        }
+
+    }else{
+
+        database.invoices.unshift(invoice);
+
+        database.nextNumber++;
+
+    }
+
+
+    /* SAVE CUSTOMER */
+
+    let existing=
+        database.customers.find(
+            c=>
+                c.name.toLowerCase()===
+                customerName.toLowerCase()
+        );
+
+
+    if(!existing){
+
+        database.customers.push({
+
+            id:
+                Date.now().toString(),
+
+            name:
+                customerName,
+
+            phone:
+                invoice.customer.phone,
+
+            address:
+                invoice.customer.address
+
+        });
+
+    }
+
+
+    saveDatabase();
+
+
+    alert(
+        "Invoice saved successfully!"
+    );
+
+
+    renderDashboard();
+
+    renderHistory();
+
+    renderCustomers();
+
+}
+
+
+/* =====================================================
+   OPEN INVOICE
+===================================================== */
+
+function openInvoice(id){
+
+    let invoice=
+        database.invoices.find(
+            i=>i.id===id
+        );
+
+
+    if(!invoice)
+        return;
+
+
+    editingInvoiceId=id;
+
+
+    showPage("invoice");
+
+
+    document.getElementById(
+        "invoiceHeading"
+    ).textContent="Edit Invoice";
+
+
+    document.getElementById(
+        "invoiceNumber"
+    ).value=invoice.number;
+
+
+    document.getElementById(
+        "invoiceType"
+    ).value=invoice.type;
+
+
+    document.getElementById(
+        "issueDate"
+    ).value=invoice.issue;
+
+
+    document.getElementById(
+        "dueDate"
+    ).value=invoice.due;
+
+
+    document.getElementById(
+        "customerName"
+    ).value=invoice.customer.name;
+
+
+    document.getElementById(
+        "customerPhone"
+    ).value=invoice.customer.phone;
+
+
+    document.getElementById(
+        "customerAddress"
+    ).value=invoice.customer.address;
+
+
+    document.getElementById(
+        "discount"
+    ).value=invoice.discount;
+
+
+    document.getElementById(
+        "tax"
+    ).value=invoice.tax;
+
+
+    document.getElementById(
+        "paymentStatus"
+    ).value=invoice.status;
+
+
+    document.getElementById(
+        "paymentMethod"
+    ).value=invoice.payment;
+
+
+    document.getElementById(
+        "notes"
+    ).value=invoice.notes;
+
+
+    document.getElementById(
+        "itemsBody"
+    ).innerHTML="";
+
+
+    invoice.items.forEach(item=>{
+
+        addItem(
+            item.description,
+            item.qty,
+            item.rate
+        );
+
+    });
+
+
+    loadBusinessIntoInvoice();
+
+
+    updatePreview();
+
+}
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+function renderHistory(){
+
+    let search=
+        (
+            document.getElementById(
+                "searchInvoice"
+            )?.value || ""
+        ).toLowerCase();
+
+
+    let invoices=
+        database.invoices.filter(
+            i=>
+
+                i.number
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                i.customer.name
+                .toLowerCase()
+                .includes(search)
+        );
+
+
+    if(invoices.length===0){
+
+        document.getElementById(
+            "historyList"
+        ).innerHTML=`
+
+            <div class="empty">
+
+                📄
+
+                <br><br>
+
+                No invoices found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html=`
+
+    <table class="data-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Invoice</th>
+
+                <th>Date</th>
+
+                <th>Customer</th>
+
+                <th>Status</th>
+
+                <th>Total</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+    `;
+
+
+    invoices.forEach(invoice=>{
+
+        let cls=
+            invoice.status==="PAID"
+            ?
+            "paid"
+            :
+            invoice.status==="UNPAID"
+            ?
+            "unpaid"
+            :
+            "partial";
+
+
+        html+=`
+
+        <tr>
+
+            <td>
+                <strong>
+                    ${escapeHTML(invoice.number)}
+                </strong>
+            </td>
+
+            <td>
+                ${escapeHTML(invoice.issue)}
+            </td>
+
+            <td>
+                ${escapeHTML(invoice.customer.name)}
+            </td>
+
+            <td>
+
+                <span class="badge ${cls}">
+                    ${escapeHTML(invoice.status)}
+                </span>
+
+            </td>
+
+            <td>
+                ${money(invoice.total)}
+            </td>
+
+            <td>
+
+                <button class="btn"
+                        onclick="openInvoice('${invoice.id}')">
+                    Open
+                </button>
+
+                <button class="btn danger"
+                        onclick="deleteInvoice('${invoice.id}')">
+                    Delete
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    html+=`
+
+        </tbody>
+
+    </table>
+
+    `;
+
+
+    document.getElementById(
+        "historyList"
+    ).innerHTML=html;
+
+}
+
+
+/* =====================================================
+   DELETE INVOICE
+===================================================== */
+
+function deleteInvoice(id){
+
+    if(
+        !confirm(
+            "Delete this invoice?"
+        )
+    )
+        return;
+
+
+    database.invoices=
+        database.invoices.filter(
+            i=>i.id!==id
+        );
+
+
+    saveDatabase();
+
+
+    renderHistory();
+
+    renderDashboard();
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function renderDashboard(){
+
+    let total=0;
+
+    let paid=0;
+
+
+    database.invoices.forEach(
+        invoice=>{
+
+            total+=invoice.total;
+
+
+            if(
+                invoice.status==="PAID"
+            )
+                paid+=invoice.total;
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalInvoices"
+    ).textContent=
+        database.invoices.length;
+
+
+    document.getElementById(
+        "totalSales"
+    ).textContent=
+        money(total);
+
+
+    document.getElementById(
+        "paidSales"
+    ).textContent=
+        money(paid);
+
+
+    document.getElementById(
+        "totalCustomers"
+    ).textContent=
+        database.customers.length;
+
+
+    let recent=
+        database.invoices.slice(0,5);
+
+
+    if(recent.length===0){
+
+        document.getElementById(
+            "recentInvoices"
+        ).innerHTML=`
+
+            <div class="empty">
+
+                🧾
+
+                <br><br>
+
+                No invoices yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html=`
+
+    <table class="data-table">
+
+    <thead>
+
+    <tr>
+
+        <th>Invoice</th>
+
+        <th>Customer</th>
+
+        <th>Status</th>
+
+        <th>Total</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    `;
+
+
+    recent.forEach(invoice=>{
+
+        let cls=
+            invoice.status==="PAID"
+            ?
+            "paid"
+            :
+            invoice.status==="UNPAID"
+            ?
+            "unpaid"
+            :
+            "partial";
+
+
+        html+=`
+
+        <tr
+            onclick="openInvoice('${invoice.id}')"
+            style="cursor:pointer">
+
+            <td>
+                ${escapeHTML(invoice.number)}
+            </td>
+
+            <td>
+                ${escapeHTML(invoice.customer.name)}
+            </td>
+
+            <td>
+
+                <span class="badge ${cls}">
+                    ${escapeHTML(invoice.status)}
+                </span>
+
+            </td>
+
+            <td>
+                ${money(invoice.total)}
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    html+=`
+
+    </tbody>
+
+    </table>
+
+    `;
+
+
+    document.getElementById(
+        "recentInvoices"
+    ).innerHTML=html;
+
+}
+
+
+/* =====================================================
+   CUSTOMER SELECT
+===================================================== */
+
+function renderCustomerSelect(){
+
+    let select=
+        document.getElementById(
+            "customerSelect"
+        );
+
+
+    select.innerHTML=
+        "<option value=''>Select customer</option>";
+
+
+    database.customers.forEach(
+        customer=>{
+
+            select.innerHTML+=`
+
+                <option value="${customer.id}">
+                    ${escapeHTML(customer.name)}
+                </option>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   SELECT CUSTOMER
+===================================================== */
+
+function selectCustomer(){
+
+    let id=
+        document.getElementById(
+            "customerSelect"
+        ).value;
+
+
+    let customer=
+        database.customers.find(
+            c=>c.id===id
+        );
+
+
+    if(!customer)
+        return;
+
+
+    document.getElementById(
+        "customerName"
+    ).value=customer.name;
+
+
+    document.getElementById(
+        "customerPhone"
+    ).value=customer.phone;
+
+
+    document.getElementById(
+        "customerAddress"
+    ).value=customer.address;
+
+
+    updatePreview();
+
+}
+
+
+/* =====================================================
+   ADD CUSTOMER
+===================================================== */
+
+function addCustomer(){
+
+    let name=
+        prompt(
+            "Customer name:"
+        );
+
+
+    if(!name)
+        return;
+
+
+    let phone=
+        prompt(
+            "Phone / WhatsApp:"
+        ) || "";
+
+
+    let address=
+        prompt(
+            "Address:"
+        ) || "";
+
+
+    database.customers.push({
+
+        id:
+            Date.now().toString(),
+
+        name:name,
+
+        phone:phone,
+
+        address:address
+
+    });
+
+
+    saveDatabase();
+
+
+    renderCustomers();
+
+    renderDashboard();
+
+
+    alert(
+        "Customer added successfully."
+    );
+
+}
+
+
+/* =====================================================
+   CUSTOMERS
+===================================================== */
+
+function renderCustomers(){
+
+    let container=
+        document.getElementById(
+            "customersList"
+        );
+
+
+    if(database.customers.length===0){
+
+        container.innerHTML=`
+
+            <div class="empty">
+
+                👥
+
+                <br><br>
+
+                No customers yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML="";
+
+
+    database.customers.forEach(
+        customer=>{
+
+            container.innerHTML+=`
+
+            <div class="customer">
+
+                <strong>
+                    ${escapeHTML(customer.name)}
+                </strong>
+
+                <p>
+
+                    📱
+                    ${escapeHTML(customer.phone)}
+
+                    <br>
+
+                    📍
+                    ${escapeHTML(customer.address)}
+
+                </p>
+
+
+                <button class="btn"
+                        onclick="newInvoiceForCustomer('${customer.id}')">
+
+                    New Invoice
+
+                </button>
+
+            </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   NEW INVOICE FOR CUSTOMER
+===================================================== */
+
+function newInvoiceForCustomer(id){
+
+    newInvoice();
+
+
+    document.getElementById(
+        "customerSelect"
+    ).value=id;
+
+
+    selectCustomer();
+
+}
+
+
+/* =====================================================
+   BUSINESS SETTINGS
+===================================================== */
+
+function loadBusinessSettings(){
+
+    let b=database.business;
+
+
+    document.getElementById(
+        "settingsName"
+    ).value=b.name;
+
+
+    document.getElementById(
+        "settingsAddress"
+    ).value=b.address;
+
+
+    document.getElementById(
+        "settingsPhone"
+    ).value=b.phone;
+
+
+    document.getElementById(
+        "settingsEmail"
+    ).value=b.email;
+
+
+    document.getElementById(
+        "settingsGST"
+    ).value=b.gst;
+
+
+    document.getElementById(
+        "settingsPrefix"
+    ).value=b.prefix;
+
+}
+
+
+/* =====================================================
+   SAVE BUSINESS
+===================================================== */
+
+function saveBusinessSettings(){
+
+    database.business.name=
+        document.getElementById(
+            "settingsName"
+        ).value;
+
+
+    database.business.address=
+        document.getElementById(
+            "settingsAddress"
+        ).value;
+
+
+    database.business.phone=
+        document.getElementById(
+            "settingsPhone"
+        ).value;
+
+
+    database.business.email=
+        document.getElementById(
+            "settingsEmail"
+        ).value;
+
+
+    database.business.gst=
+        document.getElementById(
+            "settingsGST"
+        ).value;
+
+
+    database.business.prefix=
+        document.getElementById(
+            "settingsPrefix"
+        ).value ||
+        "LOYAL";
+
+
+    saveDatabase();
+
+
+    alert(
+        "Business settings saved."
+    );
+
+}
+
+
+/* =====================================================
+   LOGO UPLOAD
+===================================================== */
+
+document.getElementById(
+    "logoFile"
+).addEventListener(
+    "change",
+    function(){
+
+        let file=this.files[0];
+
+
+        if(!file)
+            return;
+
+
+        let reader=
+            new FileReader();
+
+
+        reader.onload=function(){
+
+            database.business.logo=
+                reader.result;
+
+
+            saveDatabase();
+
+
+            document.getElementById(
+                "logoPreview"
+            ).src=
+                reader.result;
+
+
+            updatePreview();
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function shareWhatsApp(){
+
+    let data=calculate();
+
+
+    let customer=
+        document.getElementById(
+            "customerName"
+        ).value;
+
+
+    let phone=
+        document.getElementById(
+            "customerPhone"
+        ).value
+        .replace(/\D/g,"");
+
+
+    let invoice=
+        document.getElementById(
+            "invoiceNumber"
+        ).value;
+
+
+    let business=
+        document.getElementById(
+            "businessName"
+        ).value;
+
+
+    let message=
+
+`*LOYAL EVENT & CATERERS*
+
+*${document.getElementById("invoiceType").value}*
+
+Invoice: ${invoice}
+
+Business:
+${business}
+
+Customer:
+${customer}
+
+Total:
+${money(data.total)}
+
+Status:
+${document.getElementById("paymentStatus").value}
+
+Thank you for choosing LOYAL Event & Caterers!`;
+
+
+    let url=
+        "https://wa.me/" +
+        phone +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+function printInvoice(){
+
+    updatePreview();
+
+    window.print();
+
+}
+
+
+/* =====================================================
+   BACKUP
+===================================================== */
+
+function backupData(){
+
+    let data=
+        JSON.stringify(
+            database,
+            null,
+            2
+        );
+
+
+    let blob=
+        new Blob(
+            [data],
+            {
+                type:"application/json"
+            }
+        );
+
+
+    let url=
+        URL.createObjectURL(blob);
+
+
+    let link=
+        document.createElement("a");
+
+
+    link.href=url;
+
+
+    link.download=
+        "LOYAL-invoice-backup.json";
+
+
+    link.click();
+
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* =====================================================
+   HTML SECURITY
+===================================================== */
+
+function escapeHTML(text){
+
+    return String(text || "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   LIVE PREVIEW
+===================================================== */
+
+document.querySelectorAll(
+    "#invoicePage input,"+
+    "#invoicePage textarea,"+
+    "#invoicePage select"
+).forEach(
+    element=>{
+
+        element.addEventListener(
+            "input",
+            updatePreview
+        );
+
+        element.addEventListener(
+            "change",
+            updatePreview
+        );
+
+    }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderDashboard();
+
+renderCustomers();
+
+newInvoice();
+
+</script>
+
+</body>
+</html>
